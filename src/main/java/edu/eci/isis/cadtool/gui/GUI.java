@@ -95,8 +95,19 @@ public class GUI extends JFrame {
             }
             
         });
+
+        JMenuItem mirror = new JMenuItem(new AbstractAction("Mirror") {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                canvas.mirror();
+            }
+            
+        });
+
         
         transformsMenu.add(duplicate);
+        transformsMenu.add(mirror);
         
         result.add(shapeMenu);
         result.add(styleMenu);

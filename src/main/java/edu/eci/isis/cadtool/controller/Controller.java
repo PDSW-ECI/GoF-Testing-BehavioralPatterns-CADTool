@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Observable;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,7 +33,10 @@ public class Controller {
     }
     
     /**
-     * Clonar todas las figuras
+     * Duplica todas las figuras, y las ubica en una nueva posicion.
+     * @pre la coleccion 'shapes' no tiene referencias duplicadas
+     * @pos la coleccion 'shapes' contiene el doble de figuras
+     * @pos la coleccion 'shapes' no tiene referencias duplicadas
      */
     public void duplicateShapes(){
         
@@ -41,7 +45,7 @@ public class Controller {
         int displacementDelta=10+new Random(System.currentTimeMillis()).nextInt(50);
         
         for (Shape s:shapes){
-            Shape ns=s;
+            Shape ns=s.cloneShape();
             ns.setPoint1(new Point(s.getPoint1().getX(),s.getPoint1().getY()+displacementDelta));
             ns.setPoint2(new Point(s.getPoint2().getX(),s.getPoint2().getY()+displacementDelta));
             newShapes.add(ns);
@@ -55,9 +59,45 @@ public class Controller {
     }
     
     
-    public void mirror(){
+
+
+    /**
+     * Crea una imagen espejo, en la mitad derecha del canvas, con las figuras 
+     * de la mitad izquierda del mismo. Aquellas figuras que se esten en 
+     * ambas mitades (es decir, que son intersectadas por la linea imaginaria
+     * vertical del centro de la pantalla) no se tienen en cuenta para la 
+     * imagen espejo.
+     * 
+     * @pre la coleccion 'shapes' no contiene referencias duplicadas.
+     * @pos la coleccion 'shapes' tendra tantas figuras adicionales como
+     *      figuras existentes a la izquierda del canvas, y estas 
+     *      seran una imagen invertida de las originales.
+     * 
+     */
+    /*
+                      |
+      +-------+       |       +-------+
+      |       |       |       |       |
+      |       |   +   |   +   |       |
+      |       |   |   |   |   |       |
+      |       |   +   |   +   |       |
+      +-------+       |       +-------+
+                      |
+                      |
+           +-------+  | +--------+
+                      |
+                      |
+                      |
+                      |
+                      +
+    */        
+    public void mirror(int canvasWidth){
+
+        LOG.info("Generating mirror image with canvas width of "+canvasWidth);
         
     }
+
+    private static final Logger LOG = Logger.getLogger(Controller.class.getName());
     
     
     

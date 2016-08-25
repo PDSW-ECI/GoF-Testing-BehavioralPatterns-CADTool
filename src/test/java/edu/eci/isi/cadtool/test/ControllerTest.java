@@ -26,9 +26,22 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
+ * CLASES DE EQUIVALENCIA
+ * 
+ * mirror()
+ * 
+ * Clase 1: Bla Bla Bla
+ *      Tipo: Valida 
  *
- * @author hcadavid
+ * Clase 2: Bla Bla Bla
+ *      Tipo: Valida / Frontera
+ * 
+ * Clase 1: Bla Bla Bla
+ *      Tipo: Invalida / Frontera
+ 
+ * 
  */
+
 public class ControllerTest {
     
     public ControllerTest() {
@@ -48,12 +61,28 @@ public class ControllerTest {
         guictrl.duplicateShapes();
         
         
-        assertEquals("No se esta duplicando el numero de objetos con 'duplicateTest'",guictrl.getShapes().size(), 4);
-        //List<Shape> shapes=guictrl.getShapes();
+        assertEquals("duplicateShapes in not duplicating the amount of shapes",guictrl.getShapes().size(), 4);
         
-        //for
+        List<Shape> shapes=guictrl.getShapes();
         
+        
+        for (Shape si:shapes){
+            int refcount=0;
+            for (Shape sj:shapes){
+                if (si==sj) refcount++;
+            }
+            if (refcount>1){
+                fail("duplicateShapes method is generating duplicated references");                        
+            }
+        }
         
     }
+
+    
+    @Test
+    public void mirrorTest() {
+
+    }
+
     
 }

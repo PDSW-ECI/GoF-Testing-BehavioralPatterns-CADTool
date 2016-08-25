@@ -49,6 +49,13 @@ public class ShapeCanvas extends JPanel implements MouseInputListener {
     }
     
 
+    public void mirror(){
+        controller.mirror(this.getWidth());
+        this.repaint();
+    }
+    
+    
+    
     @Override
     public void paint(Graphics g) {
         super.paint(g);
